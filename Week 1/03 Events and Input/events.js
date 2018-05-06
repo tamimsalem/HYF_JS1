@@ -9,9 +9,39 @@ function main() {
     const image = document.getElementById('profileImage');
 
     applyButton.addEventListener('click', function() {
-        image.setAttribute('width', imageWidthInput.value);
-        image.style.borderColor = colorSelect.value;
-    }); //is this event enough
+        console.log('button was clicked');
+    });
+
+    imageWidthInput.addEventListener('blur', function() {
+        //setImage(imageWidthInput.value, colorSelect.value);
+    });
+
+    imageWidthInput.addEventListener('keyup', function(e) {
+        if(e.keyCode === 13) {
+            setImage(imageWidthInput.value, colorSelect.value);
+        }
+    });
+
+    colorSelect.addEventListener('change', function() {
+        setImage(imageWidthInput.value, colorSelect.value);
+    });
+
+    function setImage(width, color) {
+        
+        if(50 <= width && width <= 1000) {
+            image.width = width;   
+        }
+        else {
+            imageWidthInput.value = image.width;
+        }
+
+        image.style.borderColor = color;
+
+        for(let i = 0; i < 5; i ++) { 
+            console.log(i); 
+        }
+    }
 }
+
 
 window.addEventListener('load', main);
